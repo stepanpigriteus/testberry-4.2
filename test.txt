@@ -1,0 +1,8 @@
+Hello world
+this is a Test line
+ERROR something bad happened
+warning: disk almost full
+test again
+Another ERROR triggered
+the last line
+    
