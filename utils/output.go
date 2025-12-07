@@ -1,17 +1,21 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
 
-func OutRes(results []Line, cfg Сonfig) {
+	"disgreps/domain"
+)
+
+func OutRes(results []domain.Line, cfg domain.Config) {
 	for _, result := range results {
-		if cfg.countOnly {
-			fmt.Println(result.text)
+		if cfg.CountOnly {
+			fmt.Println(result.Text)
 			continue
 		}
 		prefix := ""
-		if cfg.lineNum {
-			prefix += fmt.Sprintf("%d:", result.lineNum)
+		if cfg.LineNum {
+			prefix += fmt.Sprintf("%d:", result.LineNum)
 		}
-		fmt.Printf("%s%s\n", prefix, result.text)
+		fmt.Printf("%s%s\n", prefix, result.Text)
 	}
 }

@@ -5,15 +5,16 @@ import (
 	"errors"
 	"fmt"
 	"os"
+
+	"disgreps/domain"
 )
 
-// ReadInput читает из файла или стдин
-func ReadInput(cfg Сonfig) []Line {
+func ReadInput(cfg domain.Config) []domain.Line {
 	var scanner *bufio.Scanner
-	if cfg.filename == "" {
+	if cfg.Filename == "" {
 		scanner = bufio.NewScanner(os.Stdin)
 	} else {
-		file, err := os.Open(cfg.filename)
+		file, err := os.Open(cfg.Filename)
 		if err != nil {
 			if errors.Is(err, os.ErrPermission) {
 				fmt.Fprintln(os.Stderr, "Недостаточно прав для открытия файла")
@@ -29,11 +30,11 @@ func ReadInput(cfg Сonfig) []Line {
 		scanner = bufio.NewScanner(file)
 	}
 
-	var lines []Line
+	var lines []domain.Line
 	lineNum := 0
 	for scanner.Scan() {
 		lineNum++
-		lines = append(lines, Line{lineNum, scanner.Text()})
+		lines = append(lines, domain.Line{LineNum: lineNum, Text: scanner.Text()})
 	}
 	return lines
 }
